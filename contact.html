@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Cyril Benhafed</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <nav class="nav" id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">Cyril Benhafed</a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link" data-fr="Accueil" data-en="Home">Accueil</a>
+        <a href="https://blog.benhafed.com" class="nav-link nav-link--external" target="_blank" rel="noopener" data-fr="Blog" data-en="Blog">Blog</a>
+        <a href="contact.html" class="nav-link active" data-fr="Contact" data-en="Contact">Contact</a>
+      </div>
+      <div class="nav-controls">
+        <div class="lang-switch">
+          <button class="lang-btn active" data-lang="fr" onclick="setLang('fr')">FR</button>
+          <span class="lang-sep">·</span>
+          <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+        </div>
+        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+          <span class="theme-icon theme-icon--light">☀︎</span>
+          <span class="theme-icon theme-icon--dark">☽</span>
+        </button>
+        <button class="burger" onclick="toggleMenu()" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html" class="mobile-link" data-fr="Accueil" data-en="Home">Accueil</a>
+      <a href="https://blog.benhafed.com" class="mobile-link" target="_blank" rel="noopener" data-fr="Blog" data-en="Blog">Blog ↗</a>
+      <a href="contact.html" class="mobile-link active" data-fr="Contact" data-en="Contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="page-header-bg">
+      <div class="hero-orb hero-orb--2" style="opacity:0.4;"></div>
+    </div>
+    <div class="container">
+      <div class="section-label">
+        <span class="label-line"></span>
+        <span data-fr="Échanger" data-en="Connect">Échanger</span>
+      </div>
+      <h1 class="page-title" data-fr="Contact" data-en="Contact">Contact</h1>
+      <p class="page-sub"
+         data-fr="Une question, une opportunité de collaboration ou d'intervention ? Écrivez-moi."
+         data-en="A question, a collaboration opportunity, or a teaching invitation? Reach out.">
+        Une question, une opportunité de collaboration ou d'intervention ? Écrivez-moi.
+      </p>
+    </div>
+  </div>
+
+  <!-- CONTACT SECTION -->
+  <section class="contact-section">
+    <div class="container">
+      <div class="contact-grid">
+
+        <!-- Left: direct links -->
+        <div class="contact-links-col">
+          <div class="section-label">
+            <span class="label-line"></span>
+            <span data-fr="Retrouvez-moi sur" data-en="Find me on">Retrouvez-moi sur</span>
+          </div>
+
+          <div class="contact-cards">
+            <a href="https://www.linkedin.com/in/cyril-benhafed/" target="_blank" rel="noopener" class="contact-card">
+              <div class="contact-card-icon">in</div>
+              <div class="contact-card-body">
+                <div class="contact-card-title">LinkedIn</div>
+                <div class="contact-card-sub">linkedin.com/in/cyril-benhafed</div>
+              </div>
+              <div class="contact-card-arrow">→</div>
+            </a>
+
+            <a href="https://github.com/cyrilbenhafed" target="_blank" rel="noopener" class="contact-card">
+              <div class="contact-card-icon">gh</div>
+              <div class="contact-card-body">
+                <div class="contact-card-title">GitHub</div>
+                <div class="contact-card-sub">github.com/cyrilbenhafed</div>
+              </div>
+              <div class="contact-card-arrow">→</div>
+            </a>
+
+            <a href="mailto:cyril@benhafed.com" class="contact-card">
+              <div class="contact-card-icon">@</div>
+              <div class="contact-card-body">
+                <div class="contact-card-title" data-fr="Email" data-en="Email">Email</div>
+                <div class="contact-card-sub">cyril@benhafed.com</div>
+              </div>
+              <div class="contact-card-arrow">→</div>
+            </a>
+          </div>
+
+          <div class="contact-note">
+            <p data-fr="Basé à Lyon. Disponible pour des interventions en présentiel (Lyon et alentours) ou en distanciel."
+               data-en="Based in Lyon. Available for in-person engagements (Lyon area) or remote.">
+              Basé à Lyon. Disponible pour des interventions en présentiel (Lyon et alentours) ou en distanciel.
+            </p>
+          </div>
+        </div>
+
+        <!-- Right: form -->
+        <div class="contact-form-col">
+          <div class="section-label">
+            <span class="label-line"></span>
+            <span data-fr="Envoyer un message" data-en="Send a message">Envoyer un message</span>
+          </div>
+
+          <div class="contact-form" id="contactForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" data-fr="Nom" data-en="Name">Nom</label>
+                <input type="text" class="form-input" id="nameInput" placeholder="" />
+              </div>
+              <div class="form-group">
+                <label class="form-label" data-fr="Email" data-en="Email">Email</label>
+                <input type="email" class="form-input" id="emailInput" placeholder="" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" data-fr="Sujet" data-en="Subject">Sujet</label>
+              <select class="form-input form-select" id="subjectInput">
+                <option value="" data-fr="— Choisir —" data-en="— Select —">— Choisir —</option>
+                <option value="collab" data-fr="Collaboration / Mission" data-en="Collaboration / Project">Collaboration / Mission</option>
+                <option value="teaching" data-fr="Intervention / Enseignement" data-en="Teaching / Talk">Intervention / Enseignement</option>
+                <option value="meetup" data-fr="Meetup / Événement data" data-en="Meetup / Data event">Meetup / Événement data</option>
+                <option value="other" data-fr="Autre" data-en="Other">Autre</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" data-fr="Message" data-en="Message">Message</label>
+              <textarea class="form-input form-textarea" id="messageInput" rows="5"></textarea>
+            </div>
+
+            <button class="btn btn--primary btn--full" onclick="submitForm()">
+              <span class="btn-text" data-fr="Envoyer" data-en="Send">Envoyer</span>
+            </button>
+
+            <div class="form-note">
+              <p data-fr="Ce formulaire ouvre votre client mail avec le message pré-rempli."
+                 data-en="This form opens your email client with a pre-filled message.">
+                Ce formulaire ouvre votre client mail avec le message pré-rempli.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span class="footer-name">Cyril Benhafed</span>
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/cyril-benhafed/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/cyrilbenhafed" target="_blank" rel="noopener">GitHub</a>
+        <a href="contact.html" data-fr="Contact" data-en="Contact">Contact</a>
+      </div>
+      <span class="footer-copy">© 2026</span>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    function submitForm() {
+      const name = document.getElementById('nameInput').value;
+      const email = document.getElementById('emailInput').value;
+      const subject = document.getElementById('subjectInput');
+      const subjectText = subject.options[subject.selectedIndex].text;
+      const message = document.getElementById('messageInput').value;
+
+      const body = `Nom : ${name}\nEmail : ${email}\n\n${message}`;
+      const mailtoLink = `mailto:cyril@benhafed.com?subject=${encodeURIComponent(subjectText)}&body=${encodeURIComponent(body)}`;
+      window.location.href = mailtoLink;
+    }
+
+    // Translate select options on lang change
+    function translateSelect() {
+      const lang = document.documentElement.lang;
+      document.querySelectorAll('select option[data-fr]').forEach(opt => {
+        opt.textContent = opt.dataset[lang] || opt.dataset.fr;
+      });
+    }
+    document.addEventListener('langChanged', translateSelect);
+    translateSelect();
+  </script>
+</body>
+</html>

@@ -1,0 +1,216 @@
+section_titles:
+  contact:
+    fr: "Contact"
+    en: "Contact"
+  languages:
+    fr: "Langues"
+    en: "Languages"
+  skills:
+    fr: "Compétences"
+    en: "Skills"
+  certifications:
+    fr: "Certifications"
+    en: "Certifications"
+  teaching:
+    fr: "Enseignement"
+    en: "Teaching"
+  experience:
+    fr: "Expérience professionnelle"
+    en: "Professional Experience"
+  education:
+    fr: "Formation"
+    en: "Education"
+
+title:
+  fr: "Senior Data Scientist"
+  en: "Senior Data Scientist"
+
+summary:
+  fr: >
+    Senior Data Scientist avec 14 ans d'expérience en analytics et modélisation prédictive,
+    de l'ingénierie industrielle à l'industrialisation MLOps. Expert en déploiement de
+    modèles à impact mesurable (churn, scoring, recommandation) via Databricks et CI/CD.
+    Alliant expertise technique et vision business (pricing, économie). Expérience de
+    management d'équipe data/CRM. Passionné par la transmission de connaissances et le mentorat.
+  en: >
+    Senior Data Scientist with 14 years of experience in analytics and predictive modeling,
+    from industrial engineering to MLOps industrialization. Expert in deploying models with
+    measurable impact (churn, scoring, recommender) via Databricks and CI/CD. Combining
+    technical expertise with business acumen (pricing, economics). Data/CRM team management
+    experience. Passionate about knowledge sharing and mentoring.
+
+languages:
+  - language:
+      en: "French"
+      fr: "Français"
+    level:
+      en: "Native"
+      fr: "Langue maternelle"
+  - language:
+      en: "English"
+      fr: "Anglais"
+    level:
+      en: "Professional proficiency"
+      fr: "Professionnel"
+  - language:
+      en: "Spanish"
+      fr: "Espagnol"
+    level:
+      en: "Basic notions"
+      fr: "Notions"
+
+skills:
+  programming:
+    label:
+      fr: "Programmation"
+      en: "Programming"
+    items:
+      fr: ["Python", "R", "SQL", "Bash"]
+      en: ["Python", "R", "SQL", "Bash"]
+
+  mlops:
+    label:
+      fr: "MLOps & Cloud"
+      en: "MLOps & Cloud"
+    items:
+      fr: ["Databricks", "MLflow", "CI/CD", "APIs", "Git"]
+      en: ["Databricks", "MLflow", "CI/CD", "APIs", "Git"]
+
+  data_science:
+    label:
+      fr: "Data Science"
+      en: "Data Science"
+    items:
+      fr: ["Modèles prédictifs (churn, scoring, reco)", "Segmentation", "NLP / LLM"]
+      en: ["Predictive models (churn, scoring, recommender)", "Segmentation", "NLP / LLM"]
+
+  business:
+    label:
+      fr: "Business"
+      en: "Business"
+    items:
+      fr: ["Stratégie de tarification", "CRM & marketing analytics", "Management d'équipe"]
+      en: ["Pricing strategy", "CRM & marketing analytics", "Team management"]
+
+certifications:
+  - name: "Professional Scrum Master I"
+    issuer: "Scrum.org"
+    year: "2023"
+  - name: "Databricks Certified Machine Learning Associate"
+    issuer: "Databricks"
+    year: "2026"
+
+teaching:
+  - type:
+      fr: "Interventions en école"
+      en: "School talks"
+    details:
+      fr: "Métiers de la tech, Tech 4 Good"
+      en: "Tech careers, Digital Collage workshop"
+  - type:
+      fr: "Formations internes"
+      en: "Internal training"
+    details:
+      fr: "Programmation, bonnes pratiques DS/MLOps"
+      en: "Programming, DS/MLOps best practices"
+  - type:
+      fr: "Communauté"
+      en: "Community"
+    details:
+      fr: "Participant actif meetups data/tech (Lyon)"
+      en: "Active participant in data/tech meetups (Lyon)"
+
+experience:
+  - company: "Cegid"
+    role:
+      fr: "Data Scientist"
+      en: "Data Scientist"
+    period: "2022 – Present"
+    details:
+      fr:
+        - "Conception et déploiement de modèles prédictifs (lead scoring, recommandation) améliorant conversion et rétention."
+        - "Industrialisation end-to-end : workflows LLM/NLP, intégration open data, automatisation CRM (Databricks, MLflow)."
+        - "Implémentation bonnes pratiques MLOps : CI/CD, APIs, monitoring..."
+      en:
+        - "Designed and deployed predictive models (lead scoring, recommender) improving conversion and retention."
+        - "End-to-end industrialization: LLM/NLP workflows, open data integration, CRM automation (Databricks, MLflow)."
+        - "Implemented MLOps best practices: CI/CD, APIs, performance monitoring."
+
+  - company: "Cegid"
+    role:
+      fr: "Head of Marketing Data"
+      en: "Head of Marketing Data"
+    period: "2020 – 2022"
+    details:
+      fr:
+        - "Management d'une équipe data/CRM (4 personnes) : recrutement, montée en compétences, coordination projets."
+        - "Développement de modèles prédictifs pour optimisation marketing (churn, segmentation)."
+        - "Pilotage stratégique CRM et alignement avec direction marketing/ventes."
+      en:
+        - "Managed data/CRM team (4 people): hiring, skills development, project coordination."
+        - "Built predictive models for marketing optimization (churn, segmentation)."
+        - "Led strategic CRM initiatives, aligned with marketing/sales leadership."
+
+  - company: "Cegid"
+    role:
+      fr: "Pricing Strategist"
+      en: "Pricing Strategist"
+    period: "2019 – 2020"
+    details:
+      fr:
+        - "Stratégies tarifaires data-driven basées sur modélisation et analyses comportementales."
+        - "Déploiement et suivi avec le top management, impact direct sur revenus."
+      en:
+        - "Data-driven pricing strategies based on modeling and behavioral analysis."
+        - "Deployment and monitoring with top management, direct revenue impact."
+
+  - company: "SNCF Connect"
+    role:
+      fr: "Business Analyst"
+      en: "Business Analyst"
+    period: "2016 – 2018"
+    details:
+      fr:
+        - "Pilotage analytique multi-marchés (France + Europe) pour le 1er site e-commerce français (4Md€ de ventes)."
+        - "Analyses financières, web analytics et tendances ventes pour décisions stratégiques."
+        - "Initiatives cross-fonctionnelles (Marketing, Sales, IT) : optimisation flux data, implémentation outils."
+      en:
+        - "Multi-market analytics lead (France + Europe) for France's #1 e-commerce site (€4B sales)."
+        - "Financial analysis, web analytics and sales trends for strategic decision-making."
+        - "Cross-functional initiatives (Marketing, Sales, IT): data flow optimization, tool implementation."
+
+  - company: "Disneyland Paris"
+    role:
+      fr: "Ingénieur Industriel / Analyste Pricing"
+      en: "Industrial Engineer / Pricing Analyst"
+    period: "2010 – 2016"
+    details:
+      fr:
+        - "Modèles prédictifs (forecast centre d'appels, optimisation workflows) et pricing strategies transport multi-marchés."
+        - "Management terrain et contribution projets IT Agile : intégration exigences transport dans architecture système."
+      en:
+        - "Predictive models (call center forecasting, workflow optimization) and multi-market transport pricing strategies."
+        - "Field team management and Agile IT project: integrated transport requirements into system architecture."
+
+education:
+  - school: "Toulouse INP-ENSIACET"
+    degree:
+      fr: "Diplôme d'ingénieur en Génie Industriel"
+      en: "Engineer's degree in Industrial Engineering"
+    period: "2007 – 2010"
+    details:
+      fr:
+        - "Spécialisation en optimisation de processus, statistiques, systèmes d'information."
+        - "Semestre d'échange (University of KwaZulu-Natal, logistique & supply chain)."
+      en:
+        - "Specialization in process optimization, statistics, information systems."
+        - "Exchange semester (University of KwaZulu-Natal, logistics & supply chain)."
+
+  - school: "CNAM"
+    degree:
+      fr: "Cursus Finance & Économie (Licence + Master 1)"
+      en: "Finance & Economics track (Bachelor + Master 1)"
+    period: "2012 – 2015"
+    details:
+      fr: ["Cours du soir, spécialisation économie et marchés financiers."]
+      en: ["Evening classes, focus on economics and financial markets."]

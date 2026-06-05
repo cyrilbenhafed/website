@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CV – Cyril Benhafed</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="wrapper-styles.css">
+</head>
+<body>
+
+  <!-- NAV partagée — même concept que la vitrine et le blog -->
+  <nav class="nav" id="navbar">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">Cyril Benhafed</a>
+
+      <div class="nav-links">
+        <a href="../index.html" class="nav-link" data-fr="Accueil" data-en="Home">Accueil</a>
+        <a href="https://blog.benhafed.com" class="nav-link nav-link--external" target="_blank" rel="noopener" data-fr="Blog" data-en="Blog">Blog</a>
+        <a href="index.html" class="nav-link active" data-fr="CV" data-en="CV">CV</a>
+      </div>
+
+      <div class="nav-controls">
+        <!-- Lang switcher (contextuel CV) -->
+        <div class="lang-switch">
+          <button class="lang-btn active" data-lang="fr" onclick="switchLanguage('fr')">FR</button>
+          <span class="lang-sep">·</span>
+          <button class="lang-btn" data-lang="en" onclick="switchLanguage('en')">EN</button>
+        </div>
+
+        <!-- PDF download (contextuel CV) -->
+        <button class="pdf-btn" onclick="downloadPDF()">
+          <span class="icon">⬇</span>
+          <span class="text" data-fr="PDF" data-en="PDF">PDF</span>
+        </button>
+
+        <!-- Mobile menu -->
+        <button class="burger" onclick="toggleMenu()" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="../index.html" class="mobile-link" data-fr="Accueil" data-en="Home">Accueil</a>
+      <a href="https://blog.benhafed.com" class="mobile-link" target="_blank" rel="noopener" data-fr="Blog" data-en="Blog">Blog ↗</a>
+      <a href="index.html" class="mobile-link active" data-fr="CV" data-en="CV">CV</a>
+    </div>
+  </nav>
+
+  <!-- CV iframe container -->
+  <div id="cv-container">
+    <iframe
+      id="cv-frame"
+      src="resume_fr.html"
+      frameborder="0"
+      title="CV Cyril Benhafed"
+    ></iframe>
+  </div>
+
+  <script>
+    let currentLang = localStorage.getItem('cb-lang') || 'fr';
+
+    document.addEventListener('DOMContentLoaded', function() {
+      if (currentLang === 'en') switchLanguage('en');
+    });
+
+    function switchLanguage(lang) {
+      if (lang !== 'fr' && lang !== 'en') return;
+      currentLang = lang;
+      localStorage.setItem('cb-lang', lang);
+
+      document.getElementById('cv-frame').src = `resume_${lang}.html`;
+
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+      });
+
+      document.querySelectorAll('[data-fr]').forEach(el => {
+        const t = el.getAttribute(`data-${lang}`);
+        if (t !== null) el.textContent = t;
+      });
+
+      document.documentElement.lang = lang;
+    }
+
+    function downloadPDF() {
+      const pdfFile = `resume_${currentLang}.pdf`;
+      const link = document.createElement('a');
+      link.href = pdfFile;
+      link.download = `CV_Cyril_Benhafed_${currentLang.toUpperCase()}.pdf`;
+      link.style.display = 'none';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      const btn = document.querySelector('.pdf-btn');
+      btn.classList.add('downloading');
+      setTimeout(() => btn.classList.remove('downloading'), 1500);
+    }
+
+    function toggleMenu() {
+      const menu = document.getElementById('mobileMenu');
+      if (menu) menu.classList.toggle('open');
+    }
+    document.addEventListener('click', (e) => {
+      if (e.target.classList.contains('mobile-link')) {
+        document.getElementById('mobileMenu').classList.remove('open');
+      }
+    });
+
+    function printCV() {
+      document.getElementById('cv-frame').contentWindow.print();
+    }
+    document.addEventListener('keydown', function(e) {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'p') { e.preventDefault(); printCV(); }
+      if ((e.ctrlKey || e.metaKey) && e.key === 'l') { e.preventDefault(); switchLanguage(currentLang === 'fr' ? 'en' : 'fr'); }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+# ===== macOS / éditeurs =====
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ===== Vitrine =====
+node_modules/
+*.log
+*.tmp
+*.bak
+
+# ===== CV / R (pagedown) =====
+.Rhistory
+.RData
+.Rproj.user/
+.Ruserdata
+.Rprofile
+*.Rproj
+*_cache/
+pagedown-browsers/
+
+# NB : les sorties du CV (cv/resume_*.html, cv/resume_*.pdf) sont
+# VOLONTAIREMENT versionnées — GitHub Pages les sert directement.
+# Ne pas les ignorer.
