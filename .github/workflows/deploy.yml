@@ -1,0 +1,165 @@
+name: Build & Deploy
+
+on:
+  push:
+    branches: [main, dev]
+  workflow_dispatch:
+
+# Permissions minimales par défaut — surchargées par job
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-${{ github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+
+  # ─────────────────────────────────────────────────────────────
+  # 1. BUILD — commun prod & preprod
+  # ─────────────────────────────────────────────────────────────
+  build:
+    name: Build
+    runs-on: ubuntu-24.04
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # R via r-lib/actions → version récente + RSPM (binaires pré-compilés)
+      - name: Setup R
+        uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: '4.x'
+          use-public-rspm: true
+
+      # Cache de la bibliothèque R utilisateur (invalidé si build_resume.R change)
+      - name: Cache R packages
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.R_LIBS_USER }}
+          key: ${{ runner.os }}-r-${{ hashFiles('cv/build_resume.R') }}
+          restore-keys: ${{ runner.os }}-r-
+
+      # Libs système nécessaires à la compilation des packages R
+      # (même liste que provision.sh / distrobox.ini)
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends \
+            libssl-dev libxml2-dev libcurl4-openssl-dev \
+            libfontconfig1-dev libharfbuzz-dev libfribidi-dev \
+            libfreetype6-dev libpng-dev libtiff-dev libjpeg-dev \
+            zlib1g-dev libicu-dev libuv1-dev
+
+      - name: Install R packages
+        run: |
+          Rscript -e 'install.packages(
+            c("rmarkdown", "pagedown", "yaml", "rstudioapi"),
+            repos = "https://cloud.r-project.org"
+          )'
+
+      # Google Chrome stable depuis le dépôt officiel Google.
+      # Même stratégie que provision.sh : Chromium n'est pas utilisable
+      # en conteneur (wrapper snap) — Chrome stable est la voie propre.
+      # Le shim ajoute --no-sandbox / --disable-gpu pour l'environnement CI.
+      - name: Install Google Chrome stable
+        run: |
+          curl -fsSL https://dl.google.com/linux/linux_signing_key.pub \
+            | sudo gpg --dearmor -o /usr/share/keyrings/google-chrome.gpg
+          echo "deb [arch=amd64 signed-by=/usr/share/keyrings/google-chrome.gpg] \
+            https://dl.google.com/linux/chrome/deb/ stable main" \
+            | sudo tee /etc/apt/sources.list.d/google-chrome.list >/dev/null
+          sudo apt-get update -qq
+          sudo apt-get install -y google-chrome-stable
+          printf '#!/usr/bin/env bash\nexec /usr/bin/google-chrome-stable --no-sandbox --disable-gpu --disable-dev-shm-usage "$@"\n' \
+            | sudo tee /usr/local/bin/chromium-browser >/dev/null
+          sudo chmod +x /usr/local/bin/chromium-browser
+          echo "Chrome: $(google-chrome-stable --version)"
+
+      - name: Build CV (FR + EN → HTML + PDF)
+        run: Rscript cv/build_resume.R
+
+      # Assemble le site dans _site/ :
+      #   - vitrine : fichiers à la racine
+      #   - CV      : sous-répertoire cv/
+      #   - CNAME   : domaine custom pour Pages prod
+      - name: Assemble site
+        run: |
+          mkdir -p _site/cv
+          touch _site/.nojekyll
+          cp index.html contact.html styles.css main.js CNAME _site/
+          cp cv/index.html \
+             cv/resume_fr.html cv/resume_en.html \
+             cv/resume_fr.pdf  cv/resume_en.pdf \
+             cv/specifics.css  cv/wrapper-styles.css \
+             _site/cv/
+
+      - name: Upload site artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: site
+          path: _site/
+          retention-days: 7
+
+  # ─────────────────────────────────────────────────────────────
+  # 2. DEPLOY PROD — main → benhafed.com (GitHub Pages)
+  # ─────────────────────────────────────────────────────────────
+  deploy-prod:
+    name: Deploy → Production
+    if: github.ref_name == 'main'
+    needs: build
+    runs-on: ubuntu-24.04
+    environment:
+      name: production
+      url: https://benhafed.com
+    permissions:
+      pages: write
+      id-token: write
+
+    steps:
+      - name: Download site artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: site
+          path: _site/
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site/
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
+
+  # ─────────────────────────────────────────────────────────────
+  # 3. DEPLOY PREPROD — dev → branch gh-pages-dev (inspection)
+  # ─────────────────────────────────────────────────────────────
+  deploy-preprod:
+    name: Deploy → Preprod
+    if: github.ref_name == 'dev'
+    needs: build
+    runs-on: ubuntu-24.04
+    environment:
+      name: preprod
+      url: https://github.com/${{ github.repository }}/tree/gh-pages-dev
+    permissions:
+      contents: write
+
+    steps:
+      - name: Download site artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: site
+          path: _site/
+
+      # Le CNAME ne doit pas être revendiqué par la branche preprod
+      - name: Remove CNAME from preprod artifact
+        run: rm -f _site/CNAME
+
+      - name: Push to gh-pages-dev
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages-dev
+          publish_dir: _site/
+          force_orphan: true
