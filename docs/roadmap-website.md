@@ -1,61 +1,56 @@
 # Feuille de route — `website`
 
-> État au moment de la création de ce document : repo poussé sur GitHub
-> (`main`), GitHub Pages en cours de configuration (option GitHub Actions),
-> DNS à configurer, CI/CD à mettre en place.
+> Mis à jour le 2026-06-17. État : site en ligne sur `benhafed.com`,
+> pipeline CI/CD opérationnelle. Prochaine étape : Phase 3 (thème sombre/clair).
 
 ---
 
-## Phase 1 — Mise en ligne minimale ⏳ (en cours)
+## Phase 1 — Mise en ligne minimale ✅ (terminée)
 
 **Objectif** : `benhafed.com` répond et sert la vitrine + CV depuis `main`.
 
-- [ ] **GitHub Pages** : configurer la source en "GitHub Actions"
-      (Settings → Pages → Source : GitHub Actions)
-- [ ] **DNS** : configurer chez le registrar
-  - 4 A records pour l'apex `benhafed.com` → IPs GitHub Pages
-  - 1 CNAME `www` → `cyrilbenhafed.github.io` (optionnel mais recommandé)
-  - 1 CNAME `blog` → `cyrilbenhafed.github.io` (pour le blog déjà déployé)
-- [ ] **Custom domain** dans Settings → Pages : `benhafed.com`
-- [ ] **HTTPS** : cocher "Enforce HTTPS" une fois le certificat émis
-- [ ] **Test** : ouvrir `benhafed.com` et `benhafed.com/cv/` dans un
-      navigateur en navigation privée
+- ✅ GitHub Pages configuré (source "GitHub Actions")
+- ✅ Environments `production` et `preprod` créés dans Settings → Environments
+- ✅ DNS configuré chez le registrar (4 A records apex + CNAMEs `www` et `blog`)
+- ✅ Custom domain `benhafed.com` dans Settings → Pages
+- ✅ HTTPS enforced
+- ✅ Site accessible sur `benhafed.com` et `benhafed.com/cv/`
 
-**Note** : tant que la CI/CD n'est pas en place, on basculera
-temporairement la source Pages sur "Deploy from a branch" → `main` /
-root, pour que le site soit accessible. Une fois la CI prête, retour
-sur "GitHub Actions".
+## Phase 2 — Pipeline CI/CD ✅ (terminée)
 
-## Phase 2 — Pipeline CI/CD 🎯 (prochaine session dédiée)
+**Objectif** : automatiser le build du CV et la séparation preprod/prod.
 
-**Objectif** : automatiser le build du CV et la séparation
-preprod/prod, sur le pattern du repo `blog`.
+Ce qui a été mis en place (`.github/workflows/deploy.yml`) :
+- `main` → build CV (R + pagedown + Chrome) → déploie sur GitHub Pages
+  (source "GitHub Actions") → `benhafed.com`
+- `dev` → build CV → pousse sur la branche `gh-pages-dev` (inspection)
+- Cache des packages R (invalidé si `build_resume.R` change)
+- Chrome installé depuis le dépôt officiel Google, avec shim `--no-sandbox`
+  (même stratégie que `provision.sh`)
 
-**Document de cadrage** : `synthese-cicd-website.md` (toutes les
-décisions déjà prises et questions à clarifier en début de session).
+**Décisions tranchées en cours de session :**
+- Workflow YAML direct (pas Docker) — à migrer si les dépendances
+  système deviennent trop lourdes
+- Sorties du CV (`cv/resume_*.html/pdf`) toujours versionnées dans le
+  repo (décision 1 des questions ouvertes : statu quo)
+- Branche `dev` à créer manuellement après validation du premier run prod
+  (`git checkout -b dev && git push -u origin dev`)
 
-Points clés :
-- Stratégie `dev → preprod, main → prod` calquée sur `blog`
-- Hébergement : branches `gh-pages` distinctes
-- Build du CV uniquement (vitrine reste statique)
-- Question ouverte : transposer `provision.sh` dans le workflow YAML,
-  ou passer par un conteneur Docker (recommandation initiale : YAML
-  direct, migrer vers Docker si besoin)
+## Phase 3 — Refonte visuelle (session dédiée)
 
-## Phase 3 — Refonte visuelle (autre session dédiée)
+**Objectif** : itérer sur le design quand le contenu sera stable et la
+Phase 1 terminée.
 
-**Objectif** : itérer sur le design de la vitrine quand le contenu
-sera plus stable et la CI en place pour pouvoir tester en preprod.
-
-Pas urgent. La vitrine actuelle est fonctionnelle et cohérente avec
-le CV et le blog. Évolutions possibles :
+- **Thème sombre / clair basé sur le système** (`prefers-color-scheme`) :
+  adaptation automatique à la préférence OS/navigateur. Priorité haute
+  dans cette phase — fonctionnalité attendue sur tout site en 2026.
 - Adaptation aux retours visuels au fil de l'usage
 - Ajout d'illustrations / éléments graphiques
 - Affinage des micro-interactions
 
 ## Phase 4 — Ajouts fonctionnels (au fil de l'eau)
 
-**À mesurer/prioriser quand les phases 1-2 seront terminées :**
+**À prioriser une fois les phases 1-3 terminées :**
 
 - Section "Ressources pédagogiques" (placeholder dans la nav, à
   remplir progressivement)
@@ -69,17 +64,17 @@ le CV et le blog. Évolutions possibles :
 
 - Mise à jour du CV (nouvelle certification, nouveau poste, etc.)
   → modifier `cv/cv_content.yaml`, push → CI rebuild + déploie
-- Mises à jour de l'environnement de dev (nouvelle version R, Quarto,
-  etc.) → ajuster `provision.sh`, tester en local, push
+- Mises à jour de l'environnement de dev (nouvelle version R, etc.)
+  → ajuster `provision.sh`, tester en local, push
 - Mise à jour du contenu vitrine → modifier les fichiers HTML, push
 
 ---
 
 ## Décisions ouvertes à trancher en cours de route
 
-1. **Versionnement des sorties du CV** (`cv/resume_*.html/pdf`) :
-   continuer à les commiter ? Ou les retirer et forcer le passage par
-   CI ? Décision à prendre en début de Phase 2.
+1. ~~**Versionnement des sorties du CV**~~ — **Tranché** : sorties
+   versionnées dans le repo (statu quo). La CI les reconstruit à chaque
+   push de toute façon.
 
 2. **Ajout d'une langue supplémentaire** au-delà de FR/EN ? Aucun
    besoin identifié, mais le code y est préparé via les attributs
@@ -97,12 +92,10 @@ le CV et le blog. Évolutions possibles :
 
 ## Références
 
-- **CLAUDE.md** : contexte complet pour Claude Code (à placer à la
-  racine du repo)
-- **synthese-cicd-website.md** : cadrage de la session CI/CD
+- **CLAUDE.md** : contexte complet pour Claude Code (racine du repo)
 - **README.md** (racine du repo) : structure, setup distrobox,
   build CV, déploiement
 - **.devcontainer/README.md** : détails de l'environnement de dev
   (piège Chromium, choix Chrome stable, etc.)
-- **Repo `blog`** : référence pour les workflows GitHub Actions et la
-  stratégie de branches preprod/prod
+- **Repo `blog`** : référence pour les conventions et la
+  stratégie de branches

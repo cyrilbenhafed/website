@@ -84,19 +84,19 @@ distrobox enter website -- bash -c "cd ~/projects/website/cv && Rscript build_re
 cd ~/projects/website/cv && Rscript build_resume.R
 ```
 
-## État actuel (à la création de ce document)
+## État actuel (mis à jour le 2026-06-17)
 
 - ✅ Vitrine fonctionnelle (`index.html`, `contact.html`)
 - ✅ CV buildé localement et committé (`cv/resume_{fr,en}.{html,pdf}`)
 - ✅ Environnement de dev versionné (`distrobox.ini`, `provision.sh`)
 - ✅ Settings VS Code workspace pour terminal distrobox
 - ✅ Repo poussé sur GitHub (`main`)
-- ⏳ GitHub Pages : configuration en cours (option "GitHub Actions"
-  comme source de Pages, en attente du workflow)
-- ⏳ DNS : à configurer (4 A records apex + CNAME `blog`)
-- ⏳ Workflow CI/CD : à mettre en place (voir `synthese-cicd-website.md`
-  pour le cadrage)
-- ⏳ Branche `dev` : à créer une fois la pipeline en place
+- ✅ GitHub Pages : source "GitHub Actions", custom domain `benhafed.com`, HTTPS
+- ✅ DNS : 4 A records apex + CNAME `blog` configurés chez le registrar
+- ✅ Workflow CI/CD : `.github/workflows/deploy.yml` opérationnel
+  - `main` → build CV → déploie sur GitHub Pages → `benhafed.com`
+  - `dev` → build CV → pousse sur `gh-pages-dev`
+- ⏳ Branche `dev` : à créer (`git checkout -b dev && git push -u origin dev`)
 
 ## Principes à respecter dans les évolutions
 
