@@ -98,6 +98,7 @@ jobs:
              cv/resume_fr.html cv/resume_en.html \
              cv/resume_fr.pdf  cv/resume_en.pdf \
              cv/specifics.css  cv/wrapper-styles.css \
+             cv/favicon.ico \
              _site/cv/
 
       - name: Upload site artifact
