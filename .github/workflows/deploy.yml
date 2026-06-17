@@ -32,6 +32,9 @@ jobs:
           r-version: '4.x'
           use-public-rspm: true
 
+      - name: Setup Pandoc
+        uses: r-lib/actions/setup-pandoc@v2
+
       # Cache de la bibliothèque R utilisateur (invalidé si build_resume.R change)
       - name: Cache R packages
         uses: actions/cache@v4
