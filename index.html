@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <script>
+    (function(){var t=localStorage.getItem('cb-theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);})();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cyril Benhafed — Data Scientist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <meta name="theme-color" content="#1a202c">
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://benhafed.com/">
+  <meta property="og:title" content="Cyril Benhafed — Data Scientist">
+  <meta property="og:description" content="Senior Data Scientist · Lyon, France — ML · MLOps · LLM en production">
+  <meta property="og:image" content="https://benhafed.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="Cyril Benhafed">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cyril Benhafed — Data Scientist">
+  <meta name="twitter:description" content="Senior Data Scientist · Lyon, France — ML · MLOps · LLM en production">
+  <meta name="twitter:image" content="https://benhafed.com/og-image.png">
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">Cyril Benhafed</a>
+
+      <div class="nav-links">
+        <a href="index.html" class="nav-link active" data-fr="Accueil" data-en="Home">Accueil</a>
+        <a href="https://blog.benhafed.com" class="nav-link nav-link--external" target="_blank" rel="noopener" data-fr="Blog" data-en="Blog">Blog</a>
+        <a href="contact.html" class="nav-link" data-fr="Contact" data-en="Contact">Contact</a>
+      </div>
+
+      <div class="nav-controls">
+        <!-- Lang switcher -->
+        <div class="lang-switch">
+          <button class="lang-btn active" data-lang="fr" onclick="setLang('fr')">FR</button>
+          <span class="lang-sep">·</span>
+          <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+        </div>
+
+        <!-- Theme toggle -->
+        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+          <span class="theme-icon theme-icon--light">☀︎</span>
+          <span class="theme-icon theme-icon--dark">☽</span>
+        </button>
+
+        <!-- Mobile menu -->
+        <button class="burger" onclick="toggleMenu()" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile dropdown -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html" class="mobile-link active" data-fr="Accueil" data-en="Home">Accueil</a>
+      <a href="https://blog.benhafed.com" class="mobile-link" target="_blank" rel="noopener" data-fr="Blog" data-en="Blog">Blog ↗</a>
+      <a href="contact.html" class="mobile-link" data-fr="Contact" data-en="Contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="hero-orb hero-orb--1"></div>
+      <div class="hero-orb hero-orb--2"></div>
+      <div class="hero-grid"></div>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-text">
+        <div class="hero-eyebrow">
+          <span class="eyebrow-dot"></span>
+          <span data-fr="Lyon, France" data-en="Lyon, France">Lyon, France</span>
+        </div>
+
+        <h1 class="hero-title">
+          <span class="hero-name">Cyril Benhafed</span>
+          <span class="hero-role" data-fr="Senior Data Scientist" data-en="Senior Data Scientist">Senior Data Scientist</span>
+        </h1>
+
+        <p class="hero-sub" data-fr="ML · MLOps · LLM en production" data-en="ML · MLOps · LLMs in production">ML · MLOps · LLM en production</p>
+
+        <div class="hero-cta">
+          <a href="#about" class="btn btn--primary" data-fr="En savoir plus" data-en="Learn more">En savoir plus</a>
+          <a href="contact.html" class="btn btn--ghost" data-fr="Me contacter" data-en="Get in touch">Me contacter</a>
+        </div>
+      </div>
+
+      <div class="hero-photo" aria-hidden="true">
+        <img src="/assets/photo.jpg" alt="Cyril Benhafed" class="hero-avatar">
+      </div>
+    </div>
+
+    <div class="hero-scroll">
+      <span data-fr="Défiler" data-en="Scroll">Défiler</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="container">
+
+      <div class="section-label">
+        <span class="label-line"></span>
+        <span data-fr="À propos" data-en="About">À propos</span>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-main">
+          <h2 class="about-title" data-fr="Ingénieur de formation,<br>Data Scientist par passion." data-en="Engineer by training,<br>Data Scientist by passion.">
+            Ingénieur de formation,<br>Data Scientist par passion.
+          </h2>
+
+          <div class="about-text">
+            <p data-fr="14 ans d'expérience en analytics et modélisation prédictive, de l'ingénierie industrielle à l'industrialisation MLOps. J'aide les organisations à déployer des modèles à impact mesurable — churn, scoring, recommandation — via des pratiques MLOps robustes sur Databricks."
+               data-en="14 years of experience in analytics and predictive modeling, from industrial engineering to MLOps industrialization. I help organizations deploy models with measurable impact — churn, scoring, recommender systems — through robust MLOps practices on Databricks.">
+              14 ans d'expérience en analytics et modélisation prédictive, de l'ingénierie industrielle à l'industrialisation MLOps. J'aide les organisations à déployer des modèles à impact mesurable — churn, scoring, recommandation — via des pratiques MLOps robustes sur Databricks.
+            </p>
+            <p data-fr="Ce qui me distingue : un triptyque rare alliant expertise technique, culture business (pricing, économie) et expérience de management d'équipe data. Passionné par la transmission, j'interviens également en école et bootcamp sur les métiers de la data."
+               data-en="What sets me apart: a rare combination of technical expertise, business culture (pricing, economics) and data team management experience. Passionate about knowledge sharing, I also teach in engineering schools and bootcamps.">
+              Ce qui me distingue : un triptyque rare alliant expertise technique, culture business (pricing, économie) et expérience de management d'équipe data. Passionné par la transmission, j'interviens également en école et bootcamp sur les métiers de la data.
+            </p>
+          </div>
+
+          <a href="cv/index.html" class="btn btn--primary" data-fr="Voir mon CV" data-en="View my CV">Voir mon CV</a>
+        </div>
+
+        <div class="about-sidebar">
+          <div class="pill-group">
+            <div class="pill-section">
+              <div class="pill-label" data-fr="Stack" data-en="Stack">Stack</div>
+              <div class="pills">
+                <span class="pill">Python</span>
+                <span class="pill">R</span>
+                <span class="pill">SQL</span>
+                <span class="pill">Databricks</span>
+                <span class="pill">MLflow</span>
+                <span class="pill">CI/CD</span>
+              </div>
+            </div>
+            <div class="pill-section">
+              <div class="pill-label" data-fr="Domaines" data-en="Domains">Domaines</div>
+              <div class="pills">
+                <span class="pill">Churn & Scoring</span>
+                <span class="pill">NLP / LLM</span>
+                <span class="pill">MLOps</span>
+                <span class="pill">Pricing</span>
+                <span class="pill">CRM Analytics</span>
+              </div>
+            </div>
+            <div class="pill-section">
+              <div class="pill-label" data-fr="Certifications" data-en="Certifications">Certifications</div>
+              <div class="pills">
+                <span class="pill pill--accent">PSM I</span>
+                <span class="pill pill--accent">Databricks ML Associate</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Timeline -->
+      <div class="timeline-section">
+        <div class="section-label">
+          <span class="label-line"></span>
+          <span data-fr="Parcours" data-en="Career">Parcours</span>
+        </div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-year">2022 –</div>
+            <div class="timeline-body">
+              <div class="timeline-co">Cegid</div>
+              <div class="timeline-role" data-fr="Data Scientist" data-en="Data Scientist">Data Scientist</div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2020 – 22</div>
+            <div class="timeline-body">
+              <div class="timeline-co">Cegid</div>
+              <div class="timeline-role" data-fr="Head of Marketing Data" data-en="Head of Marketing Data">Head of Marketing Data</div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2019 – 20</div>
+            <div class="timeline-body">
+              <div class="timeline-co">Cegid</div>
+              <div class="timeline-role" data-fr="Pricing Strategist" data-en="Pricing Strategist">Pricing Strategist</div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2016 – 18</div>
+            <div class="timeline-body">
+              <div class="timeline-co">SNCF Connect</div>
+              <div class="timeline-role" data-fr="Business Analyst" data-en="Business Analyst">Business Analyst</div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2010 – 16</div>
+            <div class="timeline-body">
+              <div class="timeline-co">Disneyland Paris</div>
+              <div class="timeline-role" data-fr="Ingénieur Industriel · Pricing Analyst" data-en="Industrial Engineer · Pricing Analyst">Ingénieur Industriel · Pricing Analyst</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span class="footer-name">Cyril Benhafed</span>
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/cyril-benhafed/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/cyrilbenhafed" target="_blank" rel="noopener">GitHub</a>
+        <a href="contact.html" data-fr="Contact" data-en="Contact">Contact</a>
+      </div>
+      <span class="footer-copy">© 2026</span>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
