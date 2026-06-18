@@ -1,7 +1,7 @@
 # Feuille de route — `website`
 
-> Mis à jour le 2026-06-17. État : site en ligne sur `benhafed.com`,
-> pipeline CI/CD opérationnelle. Prochaine étape : Phase 3 (thème sombre/clair).
+> Mis à jour le 2026-06-18. État : site en ligne sur `benhafed.com`,
+> pipeline CI/CD opérationnelle. Phase 3 en cours (thème sombre/clair ✅).
 
 ---
 
@@ -41,16 +41,19 @@ Ce qui a été mis en place (`.github/workflows/deploy.yml`) :
 **Objectif** : itérer sur le design quand le contenu sera stable et la
 Phase 1 terminée.
 
-- **Thème sombre / clair basé sur le système** (`prefers-color-scheme`) :
-  adaptation automatique à la préférence OS/navigateur. Priorité haute
-  dans cette phase — fonctionnalité attendue sur tout site en 2026.
+- ✅ **Thème sombre / clair basé sur le système** (`prefers-color-scheme`) :
+  détection automatique de la préférence OS/navigateur, override manuel
+  via toggle ☀︎/☽ stocké en `localStorage`. Anti-FOUC via script inline
+  dans `<head>`. Le toggle reste 2 états (light/dark) — pas de 3e état
+  « système » pour limiter la complexité.
 - ✅ **Photo dans le hero** : photo circulaire à droite du texte (desktop),
   au-dessus (mobile) — `assets/photo.jpg` extrait et optimisé depuis le CV.
 - **Transition UI vitrine → CV** : améliorer le passage visuel entre les
   deux surfaces (navigation, continuité graphique, retour arrière).
 - ✅ **Favicon** : favicon multi-résolution (`.ico` + `apple-touch-icon`
   + `svg` + PNG 16/32) ajouté sur toutes les pages, `theme-color` #1a202c.
-  Open Graph (`og:image`, etc.) reste à faire — coordonner avec la photo.
+- ✅ **Open Graph / Twitter Card** : `og:image`, meta tags complets sur
+  toutes les pages.
 - Adaptation aux retours visuels au fil de l'usage
 - Affinage des micro-interactions
 

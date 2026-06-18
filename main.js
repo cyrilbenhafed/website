@@ -3,17 +3,28 @@
    ============================================ */
 
 // ---- State ----
-let currentLang  = localStorage.getItem('cb-lang')  || 'fr';
-let currentTheme = localStorage.getItem('cb-theme') || 'light';
+let currentLang  = localStorage.getItem('cb-lang') || 'fr';
+let currentTheme = localStorage.getItem('cb-theme') || getSystemTheme();
 
 // ---- Init ----
 document.addEventListener('DOMContentLoaded', () => {
   applyTheme(currentTheme);
   applyLang(currentLang);
   initNav();
+
+  // Follow system changes when the user hasn't set an explicit preference
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+    if (!localStorage.getItem('cb-theme')) {
+      applyTheme(e.matches ? 'dark' : 'light');
+    }
+  });
 });
 
 // ---- Theme ----
+function getSystemTheme() {
+  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+}
+
 function toggleTheme() {
   currentTheme = currentTheme === 'light' ? 'dark' : 'light';
   applyTheme(currentTheme);
