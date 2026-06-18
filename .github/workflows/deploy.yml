@@ -93,7 +93,9 @@ jobs:
         run: |
           mkdir -p _site/cv
           touch _site/.nojekyll
-          cp index.html contact.html styles.css main.js CNAME _site/
+          cp *.html *.css *.js CNAME _site/
+          cp *.ico *.svg *.png _site/ 2>/dev/null || true
+          [ -d assets ] && cp -r assets _site/assets
           cp cv/index.html \
              cv/resume_fr.html cv/resume_en.html \
              cv/resume_fr.pdf  cv/resume_en.pdf \
