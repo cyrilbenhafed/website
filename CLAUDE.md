@@ -64,6 +64,9 @@ Le **blog** est hébergé dans un repo séparé (`blog`, Quarto) sur `blog.benha
   local. Workflow PR `feat → dev → main` calqué sur le repo `blog`.
 - **Langue du commit** : anglais (conventional commits :
   `feat:`, `fix:`, `build:`, `docs:`, `chore:`, `refactor:`).
+- **Message de commit** : toujours un one-liner (une seule ligne, pas
+  de corps ni de bullet points), sauf si Cyril demande explicitement
+  plus de détails.
 - **Auteur des commits** : Cyril Benhafed, `cyril@benhafed.com`.
 - **Format des fichiers** : UTF-8, LF, trim trailing whitespace, final
   newline (settings VS Code workspace).

@@ -44,14 +44,13 @@ Phase 1 terminée.
 - **Thème sombre / clair basé sur le système** (`prefers-color-scheme`) :
   adaptation automatique à la préférence OS/navigateur. Priorité haute
   dans cette phase — fonctionnalité attendue sur tout site en 2026.
-- **Photo dans le hero** : intégrer une photo dès la section d'accroche
-  (nom + rôle + CTA), visible immédiatement à l'arrivée sur le site.
+- ✅ **Photo dans le hero** : photo circulaire à droite du texte (desktop),
+  au-dessus (mobile) — `assets/photo.jpg` extrait et optimisé depuis le CV.
 - **Transition UI vitrine → CV** : améliorer le passage visuel entre les
   deux surfaces (navigation, continuité graphique, retour arrière).
-- **Favicon + Open Graph** : favicon multi-résolution (`.ico` + `apple-touch-icon`
-  + `svg`) et balises `og:image`, `og:title`, `og:description` pour un
-  partage correct sur les réseaux. À coordonner avec le choix de la photo
-  (l'`og:image` peut réutiliser la même).
+- ✅ **Favicon** : favicon multi-résolution (`.ico` + `apple-touch-icon`
+  + `svg` + PNG 16/32) ajouté sur toutes les pages, `theme-color` #1a202c.
+  Open Graph (`og:image`, etc.) reste à faire — coordonner avec la photo.
 - Adaptation aux retours visuels au fil de l'usage
 - Affinage des micro-interactions
 

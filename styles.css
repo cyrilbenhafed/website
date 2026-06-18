@@ -318,9 +318,18 @@ img { max-width: 100%; display: block; }
 .hero-content {
   position: relative;
   z-index: 1;
-  text-align: center;
-  max-width: 720px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5rem;
+  max-width: 960px;
+  width: 100%;
   animation: fadeUp 0.7s ease both;
+}
+
+.hero-text {
+  flex: 1;
+  min-width: 0;
 }
 
 @keyframes fadeUp {
@@ -341,6 +350,27 @@ img { max-width: 100%; display: block; }
   animation: fadeUp 0.7s 0.1s ease both;
 }
 
+/* Photo */
+.hero-photo {
+  flex-shrink: 0;
+  animation: fadeUp 0.7s 0.05s ease both;
+}
+
+.hero-avatar {
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  border: 3px solid var(--accent);
+  box-shadow: 0 0 0 6px rgba(102, 126, 234, 0.12), 0 20px 60px rgba(0, 0, 0, 0.15);
+  display: block;
+}
+
+[data-theme="dark"] .hero-avatar {
+  box-shadow: 0 0 0 6px rgba(102, 126, 234, 0.2), 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
 .eyebrow-dot {
   width: 6px; height: 6px;
   background: var(--accent);
@@ -351,7 +381,7 @@ img { max-width: 100%; display: block; }
 .hero-title {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.2rem;
   margin-bottom: 1rem;
   animation: fadeUp 0.7s 0.15s ease both;
@@ -386,7 +416,7 @@ img { max-width: 100%; display: block; }
 .hero-cta {
   display: flex;
   gap: 1rem;
-  justify-content: center;
+  justify-content: flex-start;
   flex-wrap: wrap;
   animation: fadeUp 0.7s 0.25s ease both;
 }
@@ -861,6 +891,22 @@ img { max-width: 100%; display: block; }
   .contact-grid {
     grid-template-columns: 1fr;
     gap: 3rem;
+  }
+}
+
+@media (max-width: 760px) {
+  .hero-content {
+    flex-direction: column-reverse;
+    text-align: center;
+    gap: 2.5rem;
+  }
+
+  .hero-title { align-items: center; }
+  .hero-cta { justify-content: center; }
+
+  .hero-avatar {
+    width: 160px;
+    height: 160px;
   }
 }
 
