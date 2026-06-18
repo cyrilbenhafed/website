@@ -2,6 +2,9 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
+  <script>
+    (function(){var t=localStorage.getItem('cb-theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);})();
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CV – Cyril Benhafed</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,8 +27,9 @@
 
       <div class="nav-links">
         <a href="../index.html" class="nav-link" data-fr="Accueil" data-en="Home">Accueil</a>
-        <a href="https://blog.benhafed.com" class="nav-link nav-link--external" target="_blank" rel="noopener" data-fr="Blog" data-en="Blog">Blog</a>
         <a href="index.html" class="nav-link active" data-fr="CV" data-en="CV">CV</a>
+        <a href="../contact.html" class="nav-link" data-fr="Contact" data-en="Contact">Contact</a>
+        <a href="https://blog.benhafed.com" class="nav-link" target="_blank" rel="noopener" data-fr="Blog" data-en="Blog">Blog</a>
       </div>
 
       <div class="nav-controls">
@@ -42,6 +46,12 @@
           <span class="text" data-fr="PDF" data-en="PDF">PDF</span>
         </button>
 
+        <!-- Theme toggle -->
+        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+          <span class="theme-icon theme-icon--light">☀︎</span>
+          <span class="theme-icon theme-icon--dark">☽</span>
+        </button>
+
         <!-- Mobile menu -->
         <button class="burger" onclick="toggleMenu()" aria-label="Menu">
           <span></span><span></span><span></span>
@@ -51,8 +61,9 @@
 
     <div class="mobile-menu" id="mobileMenu">
       <a href="../index.html" class="mobile-link" data-fr="Accueil" data-en="Home">Accueil</a>
-      <a href="https://blog.benhafed.com" class="mobile-link" target="_blank" rel="noopener" data-fr="Blog" data-en="Blog">Blog ↗</a>
       <a href="index.html" class="mobile-link active" data-fr="CV" data-en="CV">CV</a>
+      <a href="../contact.html" class="mobile-link" data-fr="Contact" data-en="Contact">Contact</a>
+      <a href="https://blog.benhafed.com" class="mobile-link" target="_blank" rel="noopener" data-fr="Blog" data-en="Blog">Blog</a>
     </div>
   </nav>
 
@@ -68,6 +79,18 @@
 
   <script>
     let currentLang = localStorage.getItem('cb-lang') || 'fr';
+
+    function toggleTheme() {
+      var current = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', current);
+      localStorage.setItem('cb-theme', current);
+    }
+
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+      if (!localStorage.getItem('cb-theme')) {
+        document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+      }
+    });
 
     document.addEventListener('DOMContentLoaded', function() {
       if (currentLang === 'en') switchLanguage('en');

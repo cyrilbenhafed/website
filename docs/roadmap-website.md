@@ -48,8 +48,10 @@ Phase 1 terminée.
   « système » pour limiter la complexité.
 - ✅ **Photo dans le hero** : photo circulaire à droite du texte (desktop),
   au-dessus (mobile) — `assets/photo.jpg` extrait et optimisé depuis le CV.
-- **Transition UI vitrine → CV** : améliorer le passage visuel entre les
-  deux surfaces (navigation, continuité graphique, retour arrière).
+- ✅ **Transition UI vitrine → CV** : nav unifiée sur toutes les surfaces
+  (Accueil | CV | Contact | Blog). CV ajouté à la nav vitrine, Contact
+  ajouté à la nav CV, toggle thème présent partout. Blog repositionné
+  en fin de nav (lien sortant) sans indicateur `↗`.
 - ✅ **Favicon** : favicon multi-résolution (`.ico` + `apple-touch-icon`
   + `svg` + PNG 16/32) ajouté sur toutes les pages, `theme-color` #1a202c.
 - ✅ **Open Graph / Twitter Card** : `og:image`, meta tags complets sur

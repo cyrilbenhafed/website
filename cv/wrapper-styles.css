@@ -93,6 +93,34 @@ body {
 .lang-btn:hover  { color: rgba(255,255,255,0.9); }
 .lang-sep { color: rgba(255,255,255,0.2); font-size: 0.7rem; }
 
+/* Theme toggle */
+.theme-toggle {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 50%;
+  width: 34px; height: 34px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: background 0.22s ease, border-color 0.22s ease;
+  position: relative;
+  overflow: hidden;
+}
+.theme-toggle:hover {
+  background: rgba(255,255,255,0.14);
+  border-color: rgba(255,255,255,0.22);
+}
+.theme-icon {
+  position: absolute;
+  font-size: 1rem;
+  line-height: 1;
+  color: rgba(255,255,255,0.75);
+  transition: opacity 0.2s, transform 0.3s;
+}
+.theme-icon--light { opacity: 1; transform: translateY(0) rotate(0deg); }
+.theme-icon--dark  { opacity: 0; transform: translateY(8px) rotate(-20deg); }
+[data-theme="dark"] .theme-icon--light { opacity: 0; transform: translateY(-8px) rotate(20deg); }
+[data-theme="dark"] .theme-icon--dark  { opacity: 1; transform: translateY(0) rotate(0deg); }
+
 /* PDF button */
 .pdf-btn {
   background: #667eea;
